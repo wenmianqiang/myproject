@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="user.css">
+    <script>
+        function checkUsername(id, infoId){
+                var reg = /^[a-zA-Z][\w]{5,9}$/;
+                var txtUsername= document.getElementById(id).value;
+                if(!reg.test(txtUsername)){
+                    setInfo(infoId,'用户名必须为6-10位字母数字，第一位是字母');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+                return true;
+       }
+       function checkName(id, infoId){
+                var reg =  /^[\u4e00-\u9fa5]/s;
+                var txtName= document.getElementById(id).value;
+                if(!reg.test(txtName)){
+                    setInfo(infoId,'姓名必须为中文');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+                return true;
+       }
+        function checkPassword(id, infoId) {
+                var reg = /^[\d]{6,10}$/;
+                var txtPassword = document.getElementById(id).value;
+                if(!reg.test(txtPassword)) {
+                    setInfo(infoId,'密码必须为6~10位数字');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+            return true;
+        }
+        function checkEmail(id, infoId) {
+                var reg = /^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$/;
+                var txtEmail = document.getElementById(id).value;
+                if(!reg.test(txtEmail)) {
+                    setInfo(infoId, '请输入正确邮箱地址');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+                return true;
+        }
+        function checkTel(id, infoId) {
+                var reg = /^[1][0-9]{10}$/;
+                var txtTel = document.getElementById(id).value;
+                if(!reg.test(txtTel)) {
+                    setInfo(infoId,'请输入正确手机号');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+                return true;
+        }
+        function checkId(id, infoId) {
+                var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+                var txtId = document.getElementById(id).value;
+                if(!reg.test(txtId)) {
+                    setInfo(infoId,'请输入正确身份证号');
+                    return false;
+                }
+                setInfo(infoId,"<img width='25' height='15' src='gou.jpg'>");
+                return true;
+        }
+        function checkAll() {
+                if(checkUsername('username','usernameInfo')&checkName('name', 'nameInfo')&checkPassword('password', 'passwordInfo')&checkId('Id', 'IdInfo')&checkTel('tel', 'telInfo')&checkEmail('email', 'emailInfo')) {
+                    return true;
+                }                
+                return false;
+        }
+        function setInfo(id, info){
+                document.getElementById(id).innerHTML=info;
+        }
+        function clearInfo(id) {
+                document.getElementById(id).innerHTML=" ";
+        }
+    </script>
+</head>
+<body>
+    <div class="inner">
+        <h2>
+            用户注册
+        </h2>
+        <form action="/user/save" method="POST" onsubmit="return checkAll();">
+            <p>
+                &emsp;用户名&emsp;&emsp;<input type="text" id="username" name="studentAccount" placeholder="请设置用户名" autofocus="autofocus" onblur="checkUsername('username', 'usernameInfo')" onfocus="clearInfo('usernameInfo')"><br><span id="usernameInfo"></span><br>
+                &ensp;中文姓名&ensp;&emsp;<input type="text" id="name" name="studentName" placeholder="请输入用户真实姓名" onblur="checkName('name', 'nameInfo')" onfocus="clearInfo('nameInfo')"><br><span id="nameInfo"></span><br>
+                &emsp;密&emsp;码&emsp;&emsp;<input type="password" id="password" name="studentPw" placeholder="请设置密码" onblur="checkPassword('password', 'passwordInfo')" onfocus="clearInfo('passwordInfo')"><br><span id="passwordInfo"></span><br>
+                &ensp;身份证号&ensp;&emsp;<input type="text" id="id" name="studentId" placeholder="请输入用户身份证号" onblur="checkId('id', 'IdInfo')" onfocus="clearInfo('IdInfo')"><br><span id="IdInfo"></span><br>
+                &emsp;电话号码&emsp;&emsp;<input type="tel" id="tel" name="studentTel" placeholder="请输入用户手机号" onblur="checkTel('tel', 'telInfo')" onfocus="clearInfo('telInfo')"><br><span id="telInfo"></span><br>
+                &emsp;邮&emsp;箱&emsp;&emsp;<input type="email" id="email" name="studentMail" placeholder="请输入用户邮箱" onblur="checkEmail('email', 'emailInfo')" onfocus="clearInfo('emailInfo')"><br><span id="emailInfo"></span><br>
+                &emsp;部&emsp;门&emsp;&emsp;<input type="text" id="department" name="className" placeholder="请输入用户所属部门" onblur="" onfocus="clearInfo('departmentInfo')"><br><span id="departmentInfo"></span><br>
+            </p>
+            <p id="login">已有账户-<a id="lo" href="login.html">立即登录</a></p>
+            <p>
+                <input type="submit" value="注册" style="width:80px;height:36px">
+                &emsp;&emsp;&emsp;<input type="reset" value="重置" style="width:80px;height:36px">
+            </p>
+        </form>
+        
+    </div>
+</body>
+</html>

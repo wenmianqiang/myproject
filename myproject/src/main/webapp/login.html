@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="user.css">
+    <script>
+        function verify(){
+            var x=document.getElementById("Un").value;
+            if(x==""){
+                window.alert("用户名不能为空");
+                return false;
+            }
+            var y=document.getElementById("Pwd").value;
+            if(y==""){
+                window.alert("密码不能为空");
+                return false;
+
+            }
+            return true;
+        }
+        function register(){
+            window.location.href="register.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="inner">
+        <h2>
+            用户登录
+        </h2>
+        <form action="/user/login" method="POST" onsubmit="return verify()">
+            <p>
+                &emsp;用户名&ensp;&emsp;<input type="text" name="account" id="Un" placeholder="用户名/邮箱/手机号/身份证号"  autofocus="autofocus"><br><br>
+                &emsp;密&emsp;码&ensp;&emsp;<input type="password" name="password" id="Pwd" placeholder="请输入密码"><br><br>
+            </p>
+            <p>
+                <input type="submit" value="登录" style="width:80px;height:36px">
+                &emsp;&emsp;&emsp;<input type="button" value="注册" style="width:80px;height:36px" onclick="register()">
+            </p>
+        </form>
+        
+    </div>
+</body>
+</html>

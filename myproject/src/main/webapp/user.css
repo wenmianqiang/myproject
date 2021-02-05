@@ -1,0 +1,28 @@
+body{
+    background-image: url(background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+div.inner{
+    margin-top: 40px;
+}
+h2{
+    text-align: center;
+}
+form{
+    width: 360px;
+    margin:40px auto;
+    padding: 20px;
+    text-align: center;
+    border: thin solid black;
+}
+#login{
+    text-align: center;
+    
+}
+
+span{
+    font-size: smaller;
+    color:red;
+}
+
